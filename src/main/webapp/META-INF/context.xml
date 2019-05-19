@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Configura o Tomcat para expor o BeanManager que será utilizado pelo CDI -->
+<Context>
+	<Manager pathname="">
+		<Resource
+			auth="Container"
+			name="BeanManager"
+			type="javax.enterprise.inject.spi.BeanManager"
+			factory="org.jboss.weld.resources.ManagerObjectFactory"/>
+	</Manager>
+</Context>
