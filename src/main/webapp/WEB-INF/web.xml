@@ -5,6 +5,10 @@
 		 version="3.1">
   <display-name>curso-jsf-primefaces-essencial</display-name>
   
+  <welcome-file-list>
+  	<welcome-file>GestaoEmpresas.xhtml</welcome-file>
+  </welcome-file-list>
+  
   <!-- Define que o projeto está em fase de Desenvolvimento (aumenta detalhes nos logs) -->
   <context-param>
   	<param-name>javax.faces.PROJECT_STAGE</param-name>
@@ -15,6 +19,12 @@
   <context-param>
   	<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
   	<param-value>0</param-value>
+  </context-param>
+  
+  <!-- Impede que os comentários atrapalhem o PanelGrid -->
+  <context-param>
+  	<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+  	<param-value>true</param-value>
   </context-param>
   
   <!-- Configura o Tomcat para expor o BeanManager que será utilizado pelo CDI -->
