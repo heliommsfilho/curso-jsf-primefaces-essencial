@@ -17,10 +17,23 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Razão Social: " for="razaoSocial"/>
-				<h:inputText id="razaoSocial" value="#{gestaoEmpresasBean.empresa.razaoSocial}"/>
+				<h:panelGroup>
+					<h:inputText id="razaoSocial" label="Razão Social" 
+								 value="#{gestaoEmpresasBean.empresa.razaoSocial}" required="true"/>
+					
+					<h:message for="razaoSocial"/>
+				</h:panelGroup>
 				
-				<h:outputLabel value="Nome Fantasia: " for="nomeFantasia"/>
-				<h:inputText id="nomeFantasia" value="#{gestaoEmpresasBean.empresa.nomeFantasia}"/>
+				<h:outputText value="Faturamento: " for="faturamento"/>
+				<h:panelGroup>
+					<h:inputText id="faturamento" label="Faturamento" 
+								 value="#{gestaoEmpresasBean.empresa.faturamento}">
+						<f:convertNumber pattern="#,##0.00"/>
+						<f:validateDoubleRange minimum="0"/>
+					</h:inputText>
+					
+					<h:message for="faturamento"/>
+				</h:panelGroup>
 				
 				<h:outputLabel value="Tipo empresa: " for="tipo"/>
 				<h:selectOneMenu id="tipo" value="#{gestaoEmpresasBean.empresa.tipo}">
@@ -29,6 +42,16 @@
 								   itemLabel="#{tipoEmpresa.descricao}" 
 								   itemValue="#{tipoEmpresa}"/>
 				</h:selectOneMenu>
+				
+				<h:outputLabel value="CNPJ: " for="cnpj"/>
+				<h:panelGroup>
+					<h:inputText id="cnpj" label="CNPJ" 
+								 value="#{gestaoEmpresasBean.empresa.cnpj}">
+						<f:validateLength minimum="18" maximum="18"/>
+					</h:inputText>
+					
+					<h:message for="cnpj"/>
+				</h:panelGroup>
 				
 				<!-- Ocupa um espaço no grid e empurra o botão para a direita -->
 				<h:outputLabel/>
