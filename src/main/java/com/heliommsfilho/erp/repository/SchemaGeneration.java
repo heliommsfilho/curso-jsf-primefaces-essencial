@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 
 import com.heliommsfilho.erp.model.Empresa;
 
+/* Classe de exemplo: Não é utilizada no projeto do curso */
 public class SchemaGeneration {
 
 	public static void main(String[] args) {

@@ -11,6 +11,7 @@ import com.heliommsfilho.erp.model.Empresa;
 import com.heliommsfilho.erp.model.RamoAtividade;
 import com.heliommsfilho.erp.model.TipoEmpresa;
 
+/* Classe de exemplo: Não é utilizada no projeto do curso */
 public class CamadaPersistencia {
 
 	public static void main(String[] args) {		
