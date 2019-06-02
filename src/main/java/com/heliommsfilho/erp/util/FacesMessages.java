@@ -1,0 +1,22 @@
+package com.heliommsfilho.erp.util;
+
+import java.io.Serializable;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+public class FacesMessages implements Serializable {
+	
+	private static final long serialVersionUID = -2287658980029751625L;
+
+	public void info(String msg) {
+		add(msg, FacesMessage.SEVERITY_INFO);
+	}
+	
+	private void add(String msg, FacesMessage.Severity severity) {
+		FacesMessage facesMessage = new FacesMessage(msg);
+		facesMessage.setSeverity(severity);
+		
+		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+	}
+}

@@ -1,51 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-		 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-		 version="3.1">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
   <display-name>curso-jsf-primefaces-essencial</display-name>
-  
   <welcome-file-list>
-  	<welcome-file>GestaoEmpresas.xhtml</welcome-file>
+    <welcome-file>GestaoEmpresas.xhtml</welcome-file>
   </welcome-file-list>
-  
-  <!-- Define que o projeto está em fase de Desenvolvimento (aumenta detalhes nos logs) -->
   <context-param>
-  	<param-name>javax.faces.PROJECT_STAGE</param-name>
-  	<param-value>Development</param-value>
+    <param-name>primefaces.FONT_AWESOME</param-name>
+    <param-value>true</param-value>
   </context-param>
-  
-  <!-- Desabilita o cache (útil em desenvolvimento) -->
   <context-param>
-  	<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
-  	<param-value>0</param-value>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
   </context-param>
-  
-  <!-- Impede que os comentários atrapalhem o PanelGrid -->
   <context-param>
-  	<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
-  	<param-value>true</param-value>
+    <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+    <param-value>0</param-value>
   </context-param>
-  
-  <!-- Configura o Tomcat para expor o BeanManager que será utilizado pelo CDI -->
+  <context-param>
+    <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+    <param-value>true</param-value>
+  </context-param>
   <resource-env-ref>
-  	<resource-env-ref-name>BeanManager</resource-env-ref-name>
-  	<resource-env-ref-type>javax.enterprise.inject.spi.BeanManager</resource-env-ref-type>
+    <resource-env-ref-name>BeanManager</resource-env-ref-name>
+    <resource-env-ref-type>javax.enterprise.inject.spi.BeanManager</resource-env-ref-type>
   </resource-env-ref>
-  
   <listener>
-  	<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+    <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
   </listener>
-  
-  <!-- O Servlet do JSF irá atuar em todos os arquivos *.xhtml -->
   <servlet>
-  	<servlet-name>Faces Servlet</servlet-name>
-  	<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
   </servlet>
-  
   <servlet-mapping>
-  	<servlet-name>Faces Servlet</servlet-name>
-  	<url-pattern>*.xhtml</url-pattern>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
-  
 </web-app>
