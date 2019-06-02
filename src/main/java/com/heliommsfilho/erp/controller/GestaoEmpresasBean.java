@@ -1,6 +1,7 @@
 package com.heliommsfilho.erp.controller;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.convert.Converter;
@@ -8,11 +9,14 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.context.RequestContext;
+
 import com.heliommsfilho.erp.model.Empresa;
 import com.heliommsfilho.erp.model.RamoAtividade;
 import com.heliommsfilho.erp.model.TipoEmpresa;
 import com.heliommsfilho.erp.repository.Empresas;
 import com.heliommsfilho.erp.repository.RamoAtividades;
+import com.heliommsfilho.erp.service.CadastroEmpresaService;
 import com.heliommsfilho.erp.util.FacesMessages;
 
 @Named
@@ -28,13 +32,40 @@ public class GestaoEmpresasBean implements Serializable {
 	private RamoAtividades ramoAtividades;
 	
 	@Inject
+	private CadastroEmpresaService cadastroEmpresaService;
+	
+	@Inject
 	private FacesMessages messages;
 	
 	private Converter ramoAtividadeConverter;
 	
+	private Empresa empresa;
+	
 	private String termoPesquisa;
 	
 	private List<Empresa> listaEmpresas;
+	
+	public void prepararNovaEmpresa() {
+		empresa = new Empresa();
+	}
+	
+	public void salvar() {
+		cadastroEmpresaService.salvar(empresa);
+		
+		if (hasPesquisa()) {
+			pesquisar();
+		} else {
+			todasEmpresas();
+		}
+		
+		messages.info("Empresa salva com sucesso");
+		
+		RequestContext.getCurrentInstance().update(Arrays.asList("frm:empresasDataTable", "frm:messages"));
+	}
+	
+	private boolean hasPesquisa() {
+		return termoPesquisa != null && !"".equals(termoPesquisa);
+	}
 	
 	public void pesquisar() {
 		listaEmpresas = empresas.pesquisar(termoPesquisa);
@@ -73,5 +104,9 @@ public class GestaoEmpresasBean implements Serializable {
 	
 	public Converter getRamoAtividadeConverter() {
 		return ramoAtividadeConverter;
+	}
+	
+	public Empresa getEmpresa() {
+		return empresa;
 	}
 }
